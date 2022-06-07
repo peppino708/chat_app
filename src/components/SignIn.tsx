@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { FC, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -35,8 +35,17 @@ type Props = {
   setName: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const SignIn: React.FC<Props> = (props) => {
+export const SignIn: FC<Props> = (props) => {
   const { setName } = props;
+  const [disabled, setDisabled] = React.useState(true);
+  const [string, setString] = useState("");
+  console.log({ string });
+
+  useEffect(() => {
+    const disabled = string === "";
+    setDisabled(disabled);
+  }, [string]);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -75,12 +84,14 @@ export const SignIn: React.FC<Props> = (props) => {
               label="ニックネーム"
               name="name"
               autoFocus
+              onChange={(e) => setString(e.target.value)}
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={disabled}
             >
               はじめる
             </Button>
