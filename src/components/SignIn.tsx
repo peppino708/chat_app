@@ -31,7 +31,12 @@ function Copyright(props: any) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+type Props = {
+  setName: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const SignIn: React.FC<Props> = (props) => {
+  const { setName } = props;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -85,4 +90,4 @@ export default function SignIn() {
       </Container>
     </ThemeProvider>
   );
-}
+};

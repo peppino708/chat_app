@@ -1,10 +1,16 @@
+import { useState } from "react";
 import "./App.css";
-import SignIn from "./components/SignIn";
+
+// pages & components
+import { SignIn } from "./components/SignIn";
 
 function App() {
+  const [name, setName] = useState("");
+  console.log({ name });
+
   return (
     <div>
-      <SignIn />
+      <SignIn setName={setName} />
     </div>
   );
 }
