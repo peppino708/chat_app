@@ -2,33 +2,11 @@ import React, { FC, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://mui.com/"
-        target="_blank"
-        rel="noopener"
-      >
-        Naoya Shishikura
-      </Link>
-    </Typography>
-  );
-}
+import { useNavigate, Link } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -104,7 +82,7 @@ export const SignIn: FC<Props> = (props) => {
             </Button>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Link to="/main">main</Link>
       </Container>
     </ThemeProvider>
   );
