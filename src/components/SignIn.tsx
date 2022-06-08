@@ -47,12 +47,9 @@ export const SignIn: FC<Props> = (props) => {
   }, [string]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    setName(string);
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -85,6 +82,7 @@ export const SignIn: FC<Props> = (props) => {
               name="name"
               autoFocus
               onChange={(e) => setString(e.target.value)}
+              value={string}
             />
             <Button
               type="button"
