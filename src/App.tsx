@@ -1,18 +1,20 @@
-import { useState } from "react";
-import "./App.css";
+import { FC, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // pages & components
-import { SignIn } from "./components/SignIn";
+import { SignIn } from "./pages/SignIn";
+import { Main } from "./pages/Main";
 
-function App() {
+export const App: FC = () => {
   const [name, setName] = useState("");
   console.log({ name });
 
   return (
-    <div>
-      <SignIn setName={setName} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignIn setName={setName} name={name} />} />
+        <Route path="main" element={<Main name={name} />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};

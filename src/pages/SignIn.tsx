@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props: any) {
   return (
@@ -33,24 +34,31 @@ const theme = createTheme();
 
 type Props = {
   setName: React.Dispatch<React.SetStateAction<string>>;
+  name: string;
 };
 
 export const SignIn: FC<Props> = (props) => {
-  const { setName } = props;
+  const { setName, name } = props;
   const [disabled, setDisabled] = React.useState(true);
   const [string, setString] = useState("");
-  console.log({ string });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const disabled = string === "";
     setDisabled(disabled);
   }, [string]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     setName(string);
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    e.preventDefault();
+    // const data = new FormData(event.currentTarget);
   };
+
+  useEffect(() => {
+    if (name !== "") {
+      navigate("/main");
+    }
+  }, [name, navigate]);
 
   return (
     <ThemeProvider theme={theme}>
